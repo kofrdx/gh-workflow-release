@@ -30,9 +30,9 @@ jobs:
       - name: Upload Full Node Release Asset
         uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
         with:
-          tag_name: ${{ inputs.release-tag }}
+          tag_name: ${{ inputs.release-tag }}-branch-protection
+          name: ${{ inputs.release-name }}-branch-protection
           prerelease: ${{ inputs.prerelease }}
-          name: ${{ inputs.release-name }}
           generate_release_notes: true
 
   do-release-stuff-on-selected-branches:
@@ -49,7 +49,26 @@ jobs:
       - name: Upload Full Node Release Asset
         uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
         with:
-          tag_name: ${{ inputs.release-tag }}
+          tag_name: ${{ inputs.release-tag }}-selected-branch          
+          name: ${{ inputs.release-name }}-selected-branch
           prerelease: ${{ inputs.prerelease }}
-          name: ${{ inputs.release-name }}
+          generate_release_notes: true
+
+  do-release-stuff-on-manual-approval:
+    name: Selected branches
+    environment: on-mannual-approval
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          tag_name: ${{ inputs.release-tag }}-manual-approval
+          name: ${{ inputs.release-name }}-manual-approval
+          prerelease: ${{ inputs.prerelease }}
           generate_release_notes: true
