@@ -53,7 +53,7 @@ jobs:
           generate_release_notes: true
 
   do-release-stuff-on-manual-approval:
-    name: Selected branches
+    name: Manual approval
     environment: on-manual-approval
     runs-on: ubuntu-22.04
     permissions:

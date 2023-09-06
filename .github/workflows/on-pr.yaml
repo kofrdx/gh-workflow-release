@@ -22,7 +22,7 @@ jobs:
         run: echo ${{ secrets.DO_NOT_ECHO }}
 
   do-release-stuff-on-manual-approval:
-    name: Selected branches
+    name: Manual approval
     environment: on-manual-approval
     runs-on: ubuntu-22.04
     permissions:
