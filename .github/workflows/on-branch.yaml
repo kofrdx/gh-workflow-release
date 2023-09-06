@@ -1,0 +1,14 @@
+name: On branch
+
+on:
+  push:
+    branches:
+      - main
+      - release\/*
+jobs:
+  do-release-stuff:
+    name: Do release stuff
+    environment: on-branch
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}

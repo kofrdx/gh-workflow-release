@@ -1,0 +1,13 @@
+name: On pr
+
+on:
+  pull_request:
+
+
+jobs:
+  do-release-stuff:
+    name: Do release stuff
+    environment: on-pr
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}

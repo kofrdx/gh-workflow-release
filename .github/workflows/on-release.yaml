@@ -1,0 +1,14 @@
+name: On release
+
+on:
+  release:
+    types: [published]
+
+
+jobs:
+  do-release-stuff:
+    name: Do release stuff
+    environment: on-release
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
