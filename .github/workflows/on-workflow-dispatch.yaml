@@ -1,0 +1,39 @@
+name: On workflow dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-tag:
+        description: 'The tag of the release'
+        required: true
+        type: string
+      release-name:
+        description: 'The name of the release'
+        required: true
+        type: string
+       branch:
+        description: 'The branch to run the release against'
+        type: string
+        required: true
+      pre-release:
+        description: 'Wether pre-release or actual release'
+        type: boolean
+        default: true
+        required: false
+
+jobs:
+  do-release-stuff-on-branch-protection:
+    name: Branch protection
+    environment: on-branch-protection
+    runs-on: ubuntu-22.04
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+
+  do-release-stuff-on-selected-branches:
+    name: Selected branches
+    environment: on-selected-branches
+    runs-on: ubuntu-22.04
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
