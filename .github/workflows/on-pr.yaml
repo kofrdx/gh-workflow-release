@@ -5,10 +5,28 @@ on:
 
 
 jobs:
-  do-release-stuff:
-    name: Do release stuff
-    environment: on-pr
+  do-release-stuff-on-branch-protection:
+    name: Branch protection
+    environment: on-branch-protection
     runs-on: ubuntu-22.04
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+
+  do-release-stuff-on-selected-branches:
+    name: Selected branches
+    environment: on-selected-branches
+    runs-on: ubuntu-22.04
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+
+  do-release-stuff-on-manual-approval:
+    name: Selected branches
+    environment: on-mannual-approval
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}

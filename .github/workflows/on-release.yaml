@@ -13,6 +13,13 @@ jobs:
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: create a file
+        run: echo ${{ secrets.DO_NOT_ECHO }} > secret.txt
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          files: secret.txt
+
   do-release-stuff-on-selected-branches:
     name: Selected branches
     environment: on-selected-branches
@@ -20,3 +27,25 @@ jobs:
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: create a file
+        run: echo ${{ secrets.DO_NOT_ECHO }} > secret.txt
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          files: secret.txt
+
+  do-release-stuff-on-manual-approval:
+    name: Selected branches
+    environment: on-mannual-approval
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: create a file
+        run: echo ${{ secrets.DO_NOT_ECHO }} > secret.txt
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          files: secret.txt

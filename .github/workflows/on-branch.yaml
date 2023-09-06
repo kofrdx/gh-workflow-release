@@ -6,10 +6,57 @@ on:
       - main
       - release\/*
 jobs:
-  do-release-stuff:
-    name: Do release stuff
-    environment: on-branch
+  do-release-stuff-on-branch-protection:
+    name: Branch protection
+    environment: on-branch-protection
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          tag_name: ${{ steps.extract_branch.outputs.branch }}
+          name: ${{ steps.extract_branch.outputs.branch }}
+          prerelease: ${{ inputs.prerelease }}
+          generate_release_notes: true
+
+  do-release-stuff-on-selected-branches:
+    name: Selected branches
+    environment: on-selected-branches
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          tag_name: ${{ steps.extract_branch.outputs.branch }}
+          name: ${{ steps.extract_branch.outputs.branch }}
+          prerelease: ${{ inputs.prerelease }}
+          generate_release_notes: true
+
+  do-release-stuff-on-manual-approval:
+    name: Selected branches
+    environment: on-mannual-approval
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          tag_name: ${{ steps.extract_branch.outputs.branch }}
+          name: ${{ steps.extract_branch.outputs.branch }}
+          prerelease: ${{ inputs.prerelease }}
+          generate_release_notes: true
