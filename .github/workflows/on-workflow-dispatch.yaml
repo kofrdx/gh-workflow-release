@@ -11,10 +11,6 @@ on:
         description: 'The name of the release'
         required: true
         type: string
-       branch:
-        description: 'The branch to run the release against'
-        type: string
-        required: true
       pre-release:
         description: 'Wether pre-release or actual release'
         type: boolean
