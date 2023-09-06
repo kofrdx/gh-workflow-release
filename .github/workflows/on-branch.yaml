@@ -26,6 +26,7 @@ jobs:
           name: ${{ steps.extract_branch.outputs.branch }}
           prerelease: true
           generate_release_notes: true
+          draft: true
 
   do-release-stuff-on-selected-branches:
     name: Selected branches
@@ -36,6 +37,10 @@ jobs:
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
       - name: Upload Full Node Release Asset
         uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
         with:
@@ -43,6 +48,7 @@ jobs:
           name: ${{ steps.extract_branch.outputs.branch }}
           prerelease: true
           generate_release_notes: true
+          draft: true
 
   do-release-stuff-on-manual-approval:
     name: Selected branches
@@ -53,6 +59,10 @@ jobs:
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
       - name: Upload Full Node Release Asset
         uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
         with:
@@ -60,3 +70,4 @@ jobs:
           name: ${{ steps.extract_branch.outputs.branch }}
           prerelease: true
           generate_release_notes: true
+          draft: true
