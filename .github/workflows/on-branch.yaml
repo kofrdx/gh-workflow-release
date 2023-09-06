@@ -52,7 +52,7 @@ jobs:
 
   do-release-stuff-on-manual-approval:
     name: Selected branches
-    environment: on-mannual-approval
+    environment: on-manual-approval
     runs-on: ubuntu-22.04
     permissions:
       contents: write
