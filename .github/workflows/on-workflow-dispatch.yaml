@@ -11,8 +11,8 @@ on:
         description: 'Name of the release'
         required: true
         type: string
-      pre-release:
-        description: 'Pre-release?'
+      prerelease:
+        description: 'Prerelease?'
         type: boolean
         default: true
         required: false
@@ -25,6 +25,13 @@ jobs:
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          tag_name: ${{ inputs.release-tag }}
+          prerelease: ${{ inputs.prerelease }}
+          name: ${{ inputs.release-name }}
+          generate_release_notes: true
 
   do-release-stuff-on-selected-branches:
     name: Selected branches
@@ -33,3 +40,12 @@ jobs:
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          tag_name: ${{ inputs.release-tag }}
+          prerelease: ${{ inputs.prerelease }}
+          name: ${{ inputs.release-name }}
+          generate_release_notes: true
