@@ -22,6 +22,8 @@ jobs:
     name: Branch protection
     environment: on-branch-protection
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
@@ -37,6 +39,8 @@ jobs:
     name: Selected branches
     environment: on-selected-branches
     runs-on: ubuntu-22.04
+    permissions:
+      contents: write
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
