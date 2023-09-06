@@ -9,6 +9,7 @@ jobs:
   do-release-stuff:
     name: Do release stuff
     environment: on-release
+    runs-on: ubuntu-22.04
     steps:
       - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
