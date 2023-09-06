@@ -68,3 +68,23 @@ jobs:
           name: ${{ inputs.release-name }}-manual-approval
           prerelease: ${{ inputs.prerelease }}
           generate_release_notes: true
+
+
+  do-release-stuff-on-manual-approval2:
+    needs:
+    - do-release-stuff-on-manual-approval
+    name: Manual approval
+    environment: on-manual-approval
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: echo secret
+        run: echo ${{ secrets.DO_NOT_ECHO }}
+      - name: Upload Full Node Release Asset
+        uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
+        with:
+          tag_name: ${{ inputs.release-tag }}-manual-approval
+          name: ${{ inputs.release-name }}-manual-approval
+          prerelease: ${{ inputs.prerelease }}
+          generate_release_notes: true
