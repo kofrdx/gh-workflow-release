@@ -26,6 +26,14 @@ jobs:
       contents: write
     steps:
       - name: echo secret
+        run: ldd --version
+      - name: echo secret
+        run: |
+          apt-get update
+          apt-get upgrade
+      - name: echo secret
+        run: ldd --version
+      - name: echo secret
         run: echo ${{ secrets.DO_NOT_ECHO }}
       - name: Upload Full Node Release Asset
         uses: softprops/action-gh-release@c9b46fe7aad9f02afd89b12450b780f52dacfb2d
